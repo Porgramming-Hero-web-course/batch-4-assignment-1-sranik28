@@ -7,9 +7,6 @@
     const Matching = sentence.match(wordRegExp);
     return Matching ? Matching.length : 0;
   };
-  const result = countWordOccurrences(
-    "TypeScript is great. I love TypeScript!",
-    "typescript"
-  );
+  const result = countWordOccurrences(" I love typeScript!", "typescript");
   console.log(result);
 }
