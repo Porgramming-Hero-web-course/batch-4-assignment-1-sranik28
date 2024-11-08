@@ -2,52 +2,47 @@
 <!-- The significance of union and intersection types in Typescript. -->
 
 <!-- ANS -->
---> One of the popular types among typescripts is Union type.The significance of union and intersection types in Typescript.
-Union and Intersection are one of the most powerful and useful features in typescript which ensures the safety of the code, offers flexibility and provides expressive type definitions which can be very much helpful. 
-These Union and Intersection types help to understand where the code is leading.
+--> One of the popular types among typescripts is Union type.what Typescript's union and intersection types mean.
+Union and Intersection are two of Typescript's most potent and practical features. They guarantee code security, give flexibility, and offer expressive type definitions that can be quite beneficial. 
+Understanding the direction of the code is made easier by these Union and Intersection types.
 
-Definitions and Usage
-If we talk about the definition of Union and Intersection, we can simply say that the Union type is a type that lets a variable hold an outcome among the many outcomes. The Union type which is defined with | which means one value would be valid otherwise the function will go for the second value for example: string | number. On the other hand the intersection type is a type which captures all the values. It validates that all the values should be in use otherwise it will provide no result. It is defined with & for example: value A & value B. 
+## Terminologies and Application
+To put it simply, the Union type is one that allows a variable to hold one outcome among the many possible possibilities. The Union type, which is declared with the symbol |, indicates that only one value is valid; if not, the function will choose the second value, as in string | number. Conversely, the intersection type is one that records every value. It confirms that every value should be used; if not, no results will be obtained. Value A & value B are examples of how it is defined using the & symbol. 
 
-Let's see some code in action.
+## Let's observe some code in operation.
 
-Union Type
-const getType = (sample: string | number) =>{
-  if(typeof sample === 'string'){
-     console.log('I am string')
-} else if (typeof sample === 'number') {
-     console.log('I am a number')
-} else {
-     console.log('I am ERROR 🥴')
-}
-  return sample;
+## Union Type
+const handleInput = (input: string | string[]): string => {
+  if (typeof input === 'string') {
+    return `Single item: ${input}`;
+  } else {
+    return `Multiple items: ${input.join(', ')}`;
+  }
 };
 
-console.log(getType())
+console.log(handleInput("apple"));        
+console.log(handleInput(["apple", "banana", "cherry"])); 
+interface BasicInfo {
+  name: string;
+  age: number;
+}
 
+interface ContactInfo {
+  email: string;
+  phone: string;
+}
 
-Intersection Type
- interface Type1 {
-    name: string;
-    age: number;
-  }
+type FullProfile = BasicInfo & ContactInfo;
 
-  interface Type2 {
-    email: string;
-    contactNo: number;
-  }
+const getUserProfile = (profile: FullProfile): string => {
+  return `Name: ${profile.name}, Age: ${profile.age}, Email: ${profile.email}, Phone: ${profile.phone}`;
+};
 
-  type AllType = Type1 & Type2;
+const user: FullProfile = {
+  name: 'Anik',
+  age: 21,
+  email: 'shariarrahmananik@gmail.com',
+  phone: '17418',
+};
 
-  const getPersonDetails = (person: AllType): AllType => {
-    return person;
-  };
-
-  const person = {
-    name: 'Alamin',
-    age: 23,
-    email: 'alamin@gmail.com',
-    contactNo: 1121,
-  };
-
-  console.log(getPersonDetails(person));
+console.log(getUserProfile(user)); 
